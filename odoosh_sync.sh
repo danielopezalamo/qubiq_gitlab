@@ -60,7 +60,7 @@ read branch
 git checkout ${branch}
 git pull
 echo '--------------------------------------'
-cp -a './../../private_sync' './*'
+cp -a './../../private_sync' '.'
 git init
 git add .
 git commit -m "${message}"
