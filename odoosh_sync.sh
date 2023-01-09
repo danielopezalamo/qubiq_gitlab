@@ -8,18 +8,24 @@ read action
 # Clonar repositorio de Odoo.sh seleccionando una rama existente
 if  [ $action == 1 ]; then
 echo "Odoo.sh -> Local"
-cd './odoo/custom/src/private_sync'
+mkdir './odoo/custom/src/tmp'
+cd './odoo/custom/src/tmp'
 echo 'Introduce la url del repositorio: '
 read url
-echo 'Introduce el nombre del repositorio: '
-read repo_name
 echo '-------------------------------------'
 git clone $url
 echo 'Introduce el nombre de la rama: '
 git branch -l
 read branch
 git checkout ${branch}
+git pull
 echo '--------------------------------------'
+echo 'Introduce el nombre del repositorio: '
+read repo_name
+cp -a ${repo_name}/* ./../private_sync
+cd ..
+sudo rm -r ./tmp
+
 
 # Subir los cambios al repositorio de Odoo.sh
 elif  [ $action == 2 ]; then
@@ -36,17 +42,28 @@ git commit -m "${message}"
 echo 'Push a Gitlab...'
 git push
 # Actualizar repositorio de Odoo.sh
-echo 'Introduce el nombre del repositorio (dentro de la carpeta private_sync): '
-read repo_name
-cd './odoo/custom/src/private_sync/'${repo_name}
-git init
+mkdir './odoo/custom/src/tmp'
+cd './odoo/custom/src/tmp'
+echo 'Introduce la url del repositorio: '
+read url
 echo '-------------------------------------'
+git clone $url
+echo 'Introduce el nombre de la rama: '
+git branch -l
+read branch
+git checkout ${branch}
 git pull
-echo '-------------------------------------'
+echo '--------------------------------------'
+echo 'Introduce el nombre del repositorio: '
+read repo_name
+cp -a ./../private_sync ${repo_name}/*
+git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
 git push
+cd ..sudo
+rm -r ./tmp
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
 else
 echo "Error: Introduzca una opción válida."
