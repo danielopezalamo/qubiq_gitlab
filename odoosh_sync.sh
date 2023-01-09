@@ -60,12 +60,11 @@ read branch
 git checkout ${branch}
 git pull
 echo '--------------------------------------'
-cp -a './../private_sync' ${repo_name}'/*'
+cp -a './../../private_sync' ${repo_name}'/*'
 git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
-echo "Rama: $(git checkout)"
 git push
 cd '..'
 sudo rm -r './tmp'
