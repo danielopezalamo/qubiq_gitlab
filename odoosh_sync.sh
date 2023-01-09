@@ -41,6 +41,8 @@ read message
 git commit -m "${message}"
 echo 'Push a Gitlab...'
 git push
+
+
 # Actualizar repositorio de Odoo.sh
 mkdir './odoo/custom/src/tmp'
 cd './odoo/custom/src/tmp'
@@ -48,12 +50,11 @@ echo 'Introduce la url del repositorio: '
 read url
 echo '-------------------------------------'
 git clone $url
-git pull main
 echo 'Introduce el nombre de la rama: '
 git branch -l
 read branch
 git checkout ${branch}
-git pull ${branch}
+git pull
 echo '--------------------------------------'
 echo 'Introduce el nombre del repositorio: '
 read repo_name
@@ -63,7 +64,7 @@ git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
 git checkout
-git push ${branch}
+git push
 cd '..'
 sudo rm -r './tmp'
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
