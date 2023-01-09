@@ -51,14 +51,15 @@ read url
 echo '-------------------------------------'
 git clone $url
 git pull
+echo 'Introduce el nombre del repositorio: '
+read repo_name
+cd ${repo_name}
 echo 'Introduce el nombre de la rama: '
 git branch -l
 read branch
 git checkout ${branch}
 git pull
 echo '--------------------------------------'
-echo 'Introduce el nombre del repositorio: '
-read repo_name
 cp -a './../private_sync' ${repo_name}'/*'
 git init
 git add .
