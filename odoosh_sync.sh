@@ -60,13 +60,13 @@ read branch
 git checkout ${branch}
 git pull
 echo '--------------------------------------'
-cp -a './../../private_sync' ${repo_name}'/*'
+cp -a './../../private_sync' './*'
 git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
 git push
-cd '..'
+cd '../..'
 sudo rm -r './tmp'
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
 else
