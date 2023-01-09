@@ -64,7 +64,7 @@ git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
-git checkout
+echo "Rama: $(git checkout)"
 git push
 cd '..'
 sudo rm -r './tmp'
