@@ -22,9 +22,9 @@ git pull
 echo '--------------------------------------'
 echo 'Introduce el nombre del repositorio: '
 read repo_name
-cp -a ${repo_name}/* ./../private_sync
+cp -a ${repo_name}'/*' './../private_sync'
 cd ..
-sudo rm -r ./tmp
+sudo rm -r './tmp'
 
 
 # Subir los cambios al repositorio de Odoo.sh
@@ -60,14 +60,14 @@ read branch
 git checkout ${branch}
 git pull
 echo '--------------------------------------'
-cp -a './../../private_sync/' '.'
+cp -a './../../private_sync/*' '.'
 git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
 git push
-#cd '../..'
-#sudo rm -r './tmp'
+cd '../..'
+sudo rm -r './tmp'
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
 else
 echo "Error: Introduzca una opción válida."
