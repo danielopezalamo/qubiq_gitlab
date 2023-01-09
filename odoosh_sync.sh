@@ -7,7 +7,7 @@ read action
 
 # Clonar repositorio de Odoo.sh seleccionando una rama existente
 if  [ $action == 1 ]; then
-echo "Odoo.sh -> Local"
+echo 'Odoo.sh -> Local'
 mkdir './odoo/custom/src/tmp'
 cd './odoo/custom/src/tmp'
 echo 'Introduce la url del repositorio: '
@@ -31,7 +31,7 @@ sudo rm -r ./tmp
 elif  [ $action == 2 ]; then
 # Actualizar repositorio local
 
-echo "Git pull: Introduce tus credenciales arriba (si es necesario)"
+echo 'Git pull: Introduce tus credenciales arriba (si es necesario)'
 echo '-------------------------------------'
 git pull
 echo '-------------------------------------'
@@ -52,18 +52,18 @@ echo 'Introduce el nombre de la rama: '
 git branch -l
 read branch
 git checkout ${branch}
-git pull
+git pull ${branch}
 echo '--------------------------------------'
 echo 'Introduce el nombre del repositorio: '
 read repo_name
-cp -a ./../private_sync ${repo_name}/*
+cp -a './../private_sync' ${repo_name}'/*'
 git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
-git push
-cd ..
-sudo rm -r ./tmp
+git push ${branch}
+cd '..'
+sudo rm -r './tmp'
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
 else
 echo "Error: Introduzca una opción válida."
