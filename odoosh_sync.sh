@@ -33,12 +33,12 @@ echo 'Git pull: Introduce tus credenciales arriba (si es necesario)'
 echo '-------------------------------------'
 git pull > logs.txt
 echo '-------------------------------------'
-git add . >> logs.txt
+git add . > logs.txt
 echo 'Introduce el mensaje del commit: '
 read message
-git commit -m "${message}" >> logs.txt
+git commit -m "${message}" > logs.txt
 echo 'Push a Gitlab...'
-git push >> logs.txt
+git push > logs.txt
 
 # Actualizar repositorio de Odoo.sh
 mkdir './odoo/custom/src/tmp'
@@ -47,22 +47,22 @@ echo 'Introduce la url del repositorio: '
 read url
 echo '-------------------------------------'
 git clone $url > logs.txt
-git pull >> logs.txt
+git pull > logs.txt
 echo 'Introduce el nombre del repositorio: '
 read repo_name
 cd ${repo_name}
 echo 'Introduce el nombre de la rama: '
-git branch -l > logs.txt
+git branch -l
 read branch
-git checkout ${branch} >> logs.txt
-git pull >> logs.txt
+git checkout ${branch} > logs.txt
+git pull > logs.txt
 echo '--------------------------------------'
 cp -a ./../../private_sync/* .
-git init >> logs.txt
-git add . >> logs.txt
+git init > logs.txt
+git add . > logs.txt
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
-git push >> logs.txt
+git push > logs.txt
 cd '../..'
 sudo rm -r './tmp'
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
