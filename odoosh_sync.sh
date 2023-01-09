@@ -1,5 +1,4 @@
 #!/bin/bash
-
 echo "Escoge la acción a realizar (1 o 2):"
 echo "1. Sincronizar repositorio de Odoo.sh a Gitlab."
 echo "2. Sincronizar repositorio de Gitlab a Odoo.sh"
@@ -13,12 +12,12 @@ cd './odoo/custom/src/tmp'
 echo 'Introduce la url del repositorio: '
 read url
 echo '-------------------------------------'
-git clone $url
+git clone $url > logs.txt
 echo 'Introduce el nombre de la rama: '
-git branch -l
+git branch -l >> logs.txt
 read branch
-git checkout ${branch}
-git pull
+git checkout ${branch} >> logs.txt
+git pull >> logs.txt
 echo '--------------------------------------'
 echo 'Introduce el nombre del repositorio: '
 read repo_name
@@ -26,22 +25,20 @@ cp -a ${repo_name}/* ./../private_sync
 cd ..
 sudo rm -r './tmp'
 
-
 # Subir los cambios al repositorio de Odoo.sh
 elif  [ $action == 2 ]; then
 # Actualizar repositorio local
-
+echo ''
 echo 'Git pull: Introduce tus credenciales arriba (si es necesario)'
 echo '-------------------------------------'
-git pull
+git pull > logs.txt
 echo '-------------------------------------'
-git add .
+git add . >> logs.txt
 echo 'Introduce el mensaje del commit: '
 read message
-git commit -m "${message}"
+git commit -m "${message}" >> logs.txt
 echo 'Push a Gitlab...'
-git push
-
+git push >> logs.txt
 
 # Actualizar repositorio de Odoo.sh
 mkdir './odoo/custom/src/tmp'
@@ -49,23 +46,23 @@ cd './odoo/custom/src/tmp'
 echo 'Introduce la url del repositorio: '
 read url
 echo '-------------------------------------'
-git clone $url
-git pull
+git clone $url > logs.txt
+git pull >> logs.txt
 echo 'Introduce el nombre del repositorio: '
 read repo_name
 cd ${repo_name}
 echo 'Introduce el nombre de la rama: '
-git branch -l
+git branch -l > logs.txt
 read branch
-git checkout ${branch}
-git pull
+git checkout ${branch} >> logs.txt
+git pull >> logs.txt
 echo '--------------------------------------'
 cp -a ./../../private_sync/* .
-git init
-git add .
+git init >> logs.txt
+git add . >> logs.txt
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
-git push
+git push >> logs.txt
 cd '../..'
 sudo rm -r './tmp'
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
