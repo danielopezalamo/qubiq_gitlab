@@ -22,7 +22,7 @@ git pull
 echo '--------------------------------------'
 echo 'Introduce el nombre del repositorio: '
 read repo_name
-cp -a ${repo_name}'/*' './../private_sync'
+cp -a ${repo_name}/* ./../private_sync
 cd ..
 sudo rm -r './tmp'
 
