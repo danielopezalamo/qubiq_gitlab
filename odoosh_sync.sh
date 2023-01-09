@@ -62,8 +62,8 @@ git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
 git push
-cd ..sudo
-rm -r ./tmp
+cd ..
+sudo rm -r ./tmp
 # Posible mejora: Clonar repositorio creando una nueva rama (para hacer PR)
 else
 echo "Error: Introduzca una opción válida."
