@@ -61,6 +61,7 @@ git init
 git add .
 git commit -m "${message}"
 echo 'Push a Odoo.sh...'
+git checkout
 git push ${branch}
 cd '..'
 sudo rm -r './tmp'
