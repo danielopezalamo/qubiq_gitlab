@@ -48,6 +48,7 @@ echo 'Introduce la url del repositorio: '
 read url
 echo '-------------------------------------'
 git clone $url
+git pull main
 echo 'Introduce el nombre de la rama: '
 git branch -l
 read branch
