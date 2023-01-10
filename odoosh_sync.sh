@@ -57,7 +57,7 @@ echo 'Introduce el nombre del repositorio: '
 read repo_name
 cd ${repo_name}
 echo 'Introduce el nombre de la rama: '
-git branch -l
+git branch -r
 read branch
 echo '-------GIT PULL ODOO.SH BRANCH--------'
 git checkout ${branch}
