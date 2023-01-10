@@ -1,7 +1,8 @@
 #!/bin/bash
+if [ -d "./odoo/custom/src/tmp" ]; then rm -Rf ./odoo/custom/src/tmp; fi
 echo "Escoge la acción a realizar (1 o 2):"
-echo "1. Sincronizar repositorio de Odoo.sh a Gitlab."
-echo "2. Sincronizar repositorio de Gitlab a Odoo.sh"
+echo "1. Sincronizar repositorio de Odoo.sh a Local."
+echo "2. Sincronizar repositorio de Gitlab y Odoo.sh"
 read action
 
 # Clonar repositorio de Odoo.sh seleccionando una rama existente
@@ -13,14 +14,16 @@ read url
 echo ''
 echo '--------CLONING FROM ODOO.SH----------'
 git clone $url
-echo 'Introduce el nombre de la rama: '
-git branch -l
-read branch
-git checkout ${branch}
-git pull
 echo '--------------------------------------'
 echo 'Introduce el nombre del repositorio: '
 read repo_name
+cd ${repo_name}
+echo 'Introduce el nombre de la rama: '
+git branch -r
+read branch
+git checkout ${branch}
+git pull
+cd ..
 cp -a ${repo_name}/* ./../private_sync
 cd ..
 sudo rm -r './tmp'
@@ -44,7 +47,6 @@ echo '----------------------------------'
 # Actualizar repositorio de Odoo.sh
 mkdir './odoo/custom/src/tmp'
 cd './odoo/custom/src/tmp'
-echo ''
 echo 'Introduce la url del repositorio: '
 read url
 echo '------------CLONING FORM ODOO.SH----------------'
